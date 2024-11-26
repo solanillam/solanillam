@@ -3,6 +3,6 @@ title: "Projects"
 ---
 
 * [Project 1]()
-* [Project 2]()
+* [Bike Project](https://stt2860-f2024.github.io/bicycle-sharing-solanillam/BikeSharing.html)
 * [Project 3]()
 * [Project 4]()
