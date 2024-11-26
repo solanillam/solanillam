@@ -2,7 +2,7 @@
 title: "About Me"
 ---
 
-This is where you get to write about yourself.
+This is where you get to write about Mariana.
 
 If your favorite color is purple you might show a graph that uses purple.
 

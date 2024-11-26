@@ -1,7 +1,7 @@
 {
-  "hash": "613c4a8d9c0e1b2a70309ae9c4831961",
+  "hash": "434983abd5edf4ecd354c266bc724165",
   "result": {
-    "markdown": "---\ntitle: \"About Me\"\n---\n\n\nThis is where you get to write about yourself.\n\nIf your favorite color is purple you might show a graph that uses purple.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](about_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "markdown": "---\ntitle: \"About Me\"\n---\n\n\nThis is where you get to write about Mariana.\n\nIf your favorite color is purple you might show a graph that uses purple.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](about_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
     "supporting": [
       "about_files"
     ],
