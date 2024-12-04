@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Mariana Solanilla"
+  title: "Mariana's Web Page"
   navbar:
     left:
       - href: index.qmd
@@ -17,17 +17,16 @@ website:
       - icon: twitter
         href: https://x.com
       - icon: linkedin
-        href: https://www.linkedin.com/
+        href: https://www.linkedin.com/in/mariana-solanilla-116bba1ab/
       - icon: github
         menu:
           - text: Source Code
-            href: https://github.com
+            href: https://github.com/solanillam/solanillam
           - text: Report a Bug
-            href: https://github.com  
-
+            href: https://support.github.com/
 format:
   html:
-    theme: pulse  # flatly, litera, lumen, lux, minty, pulse, sandstone, zephyr, quartz, yeti, cosmo, sketchy
+    theme: lumen  # flatly, litera, lumen, lux, minty, pulse, sandstone, zephyr, quartz, yeti, cosmo, sketchy
     css: styles.css
     toc: true
 
