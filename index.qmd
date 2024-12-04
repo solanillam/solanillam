@@ -1,11 +1,17 @@
 ---
-title: "Quarto Web Demo"
+title: "Welcome to My Web Page!"
 ---
 
-This is the main landing page!
+This is my digital portfolio for STT 2860 - Intro to Data Management and Visualization. Here, you’ll find a showcase of the projects and visualizations I’ve created throughout this course. This work reflects my growing proficiency in data analysis, visual storytelling, and statistical tools.
 
-* To learn more about [geezers](https://www.thegeezer.com/).
-
-* To learn more about [Quarto websites](https://quarto.org/docs/websites).
+But this portfolio isn’t just about my coursework—you’ll also get to learn more about me, my journey, and how this class has shaped my skills and aspirations.
 
 
+![Data Visualization](https://cdn.prod.website-files.com/59e16042ec229e00016d3a66/64389b816c805d102971292f_ultimate%20guide%20to%20data%20visualization_blog%20hero.webp)
+
+
+**Explore More Resources**
+
+If you're interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.
+
+Learn more about his teaching and access helpful resources click [here.](https://alanarnholt.github.io/)
