@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Bicyle Replication Project\nProject 2"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Me",
-    "section": "",
-    "text": "Hello! I’m Mariana Solanilla, a passionate and driven individual who is excited to transition from my academic journey into the professional world. I’m graduating this December with a major in Psychology and a concentration in Human Services and a minor in Leadership Studies. Throughout my studies, I’ve developed a strong interest in understanding how people thrive in organizational settings and how effective leadership can foster a productive and inclusive environment.\nOver the years, I’ve gained hands-on experience in human resources, safety analytics, and leadership, which has provided me with a broad set of skills that I’m eager to apply in a full-time role. I’ve worked on projects ranging from HR consulting to research on workplace safety, and I’ve had the opportunity to collaborate with diverse teams in both academic and professional settings.\nI’m a first-generation college student with a deep commitment to personal growth, inclusivity, and fostering positive relationships both at work and in my personal life. I’m excited to apply what I’ve learned and continue growing as a professional in the workforce.\nIn my free time, I enjoy engaging in outdoor activities, photography, and reading to unwind and stay inspired. I look forward to connecting with like-minded professionals and contributing to an organization that values collaboration and innovation.\nMy Journey in STT 2860\nAs someone who has always been more drawn to people-oriented fields like psychology and leadership, diving into a course on data management and visualization felt like a bold step. But I’ve discovered just how powerful data can be in telling stories, identifying patterns, and supporting decision-making. This class has taught me to:\n\nApproach challenges with a growth mindset.\nSee the beauty and creativity in data visualization.\nTranslate complex information into accessible insights.\n\nThrough perseverance and curiosity, I’ve gained a stronger foundation in data analysis, and I’m excited to carry these skills into my future endeavors.\n\n\n\nProfessional Headshot"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to My Web Page!",
-    "section": "",
-    "text": "This is my digital portfolio for STT 2860 - Intro to Data Management and Visualization. Here, you’ll find a showcase of the projects and visualizations I’ve created throughout this course. This work reflects my growing proficiency in data analysis, visual storytelling, and statistical tools.\nBut this portfolio isn’t just about my coursework—you’ll also get to learn more about me, my journey, and how this class has shaped my skills and aspirations.\n\n\n\nData Visualization\n\n\nExplore More Resources\nIf you’re interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.\nTo learn more about his teaching and access helpful resources, click here."
-  },
-  {
     "objectID": "Project_2/Final_qmd/Final.html",
     "href": "Project_2/Final_qmd/Final.html",
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
@@ -40,5 +19,26 @@
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
     "section": "Importing Data",
     "text": "Importing Data\nThe dataset for this project was sourced from an Excel file and imported into R using the read_excel() function from the readxl package. The imported data was then inspected and prepared for analysis through a series of cleaning and transformation steps to ensure accuracy and usability.\n\ndf &lt;- read_excel(\"~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx\")\n\nOk, let’s take a look at the data set.\n\nData Structures and Variables"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Web Page!",
+    "section": "",
+    "text": "This is my digital portfolio for STT 2860 - Intro to Data Management and Visualization. Here, you’ll find a showcase of the projects and visualizations I’ve created throughout this course. This work reflects my growing proficiency in data analysis, visual storytelling, and statistical tools.\nBut this portfolio isn’t just about my coursework—you’ll also get to learn more about me, my journey, and how this class has shaped my skills and aspirations.\n\n\n\nData Visualization\n\n\nExplore More Resources\nIf you’re interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.\nTo learn more about his teaching and access helpful resources, click here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Hello! I’m Mariana Solanilla, a passionate and driven individual who is excited to transition from my academic journey into the professional world. I’m graduating this December with a major in Psychology and a concentration in Human Services and a minor in Leadership Studies. Throughout my studies, I’ve developed a strong interest in understanding how people thrive in organizational settings and how effective leadership can foster a productive and inclusive environment.\nOver the years, I’ve gained hands-on experience in human resources, safety analytics, and leadership, which has provided me with a broad set of skills that I’m eager to apply in a full-time role. I’ve worked on projects ranging from HR consulting to research on workplace safety, and I’ve had the opportunity to collaborate with diverse teams in both academic and professional settings.\nI’m a first-generation college student with a deep commitment to personal growth, inclusivity, and fostering positive relationships both at work and in my personal life. I’m excited to apply what I’ve learned and continue growing as a professional in the workforce.\nIn my free time, I enjoy engaging in outdoor activities, photography, and reading to unwind and stay inspired. I look forward to connecting with like-minded professionals and contributing to an organization that values collaboration and innovation.\nMy Journey in STT 2860\nAs someone who has always been more drawn to people-oriented fields like psychology and leadership, diving into a course on data management and visualization felt like a bold step. But I’ve discovered just how powerful data can be in telling stories, identifying patterns, and supporting decision-making. This class has taught me to:\n\nApproach challenges with a growth mindset.\nSee the beauty and creativity in data visualization.\nTranslate complex information into accessible insights.\n\nThrough perseverance and curiosity, I’ve gained a stronger foundation in data analysis, and I’m excited to carry these skills into my future endeavors.\n\n\n\nProfessional Headshot"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Bicyle Replication Project\nProject 2"
   }
 ]
