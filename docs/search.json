@@ -4,7 +4,7 @@
     "href": "project.html",
     "title": "Projects",
     "section": "",
-    "text": "Bike Project\nProject 2"
+    "text": "Bicyle Replication Project\nProject 2"
   },
   {
     "objectID": "about.html",
@@ -18,6 +18,27 @@
     "href": "index.html",
     "title": "Welcome to My Web Page!",
     "section": "",
-    "text": "This is my digital portfolio for STT 2860 - Intro to Data Management and Visualization. Here, you’ll find a showcase of the projects and visualizations I’ve created throughout this course. This work reflects my growing proficiency in data analysis, visual storytelling, and statistical tools.\nBut this portfolio isn’t just about my coursework—you’ll also get to learn more about me, my journey, and how this class has shaped my skills and aspirations.\n\n\n\nData Visualization\n\n\nExplore More Resources\nIf you’re interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.\nLearn more about his teaching and access helpful resources click here."
+    "text": "This is my digital portfolio for STT 2860 - Intro to Data Management and Visualization. Here, you’ll find a showcase of the projects and visualizations I’ve created throughout this course. This work reflects my growing proficiency in data analysis, visual storytelling, and statistical tools.\nBut this portfolio isn’t just about my coursework—you’ll also get to learn more about me, my journey, and how this class has shaped my skills and aspirations.\n\n\n\nData Visualization\n\n\nExplore More Resources\nIf you’re interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.\nTo learn more about his teaching and access helpful resources, click here."
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html",
+    "href": "Project_2/Final_qmd/Final.html",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "",
+    "text": "Workforce and Safety!"
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html#loading-necessary-packages",
+    "href": "Project_2/Final_qmd/Final.html#loading-necessary-packages",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "Loading Necessary Packages",
+    "text": "Loading Necessary Packages\n\n# For data importing\nlibrary(readxl)\n# For data manipulation and tidying\nlibrary(tidyverse)\nlibrary(stringr)\n\n# For date and time handling\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html#importing-data",
+    "href": "Project_2/Final_qmd/Final.html#importing-data",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "Importing Data",
+    "text": "Importing Data\nThe dataset for this project was sourced from an Excel file and imported into R using the read_excel() function from the readxl package. The imported data was then inspected and prepared for analysis through a series of cleaning and transformation steps to ensure accuracy and usability.\n\ndf &lt;- read_excel(\"~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx\")\n\nOk, let’s take a look at the data set.\n\nData Structures and Variables"
   }
 ]

@@ -14,4 +14,4 @@ But this portfolio isn’t just about my coursework—you’ll also get to learn
 
 If you're interested in diving deeper into data management and visualization, check out the resources and courses offered by Dr. Alan T. Arnholt, the instructor for STT 2860 - Introduction to Data Management and Visualization at Appalachian State University. His materials provide valuable insights into the fundamentals of data science and visualization techniques.
 
-Learn more about his teaching and access helpful resources click [here.](https://alanarnholt.github.io/)
+To learn more about his teaching and access helpful resources, click [here.](https://alanarnholt.github.io/)

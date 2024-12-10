@@ -9,6 +9,8 @@
 # Load necessary libraries
 library(tidyverse)
 library(lubridate)
+library(readxl)
+library(stringr)
 
 # Load the dataset from the specified path
 df <- read_excel("~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx")
@@ -63,9 +65,10 @@ ggplot(df_cleaned, aes(x = date, y = total_work_time)) +
 ggplot(df_cleaned, aes(x = unit, y = inc)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(title = "Incidents Across Units", x = "Unit", y = "Number of Incidents") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  theme_minimal()
-
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )
 
 
 # Overtime vs. Hours Worked
@@ -84,7 +87,9 @@ df_avg_work_time <- df_cleaned %>%
 ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time)) +
   geom_bar(stat = "identity", fill = "coral") +
   labs(title = "Average Total Work Time by Unit", x = "Unit", y = "Average Work Time (hrs)") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )
++
   theme_minimal()
 
 
@@ -97,35 +102,10 @@ ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
   geom_line(color = "red") +
   labs(title = "Incidents Over Time", x = "Date", y = "Total Incidents") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-# Install corrplot if you don't have it yet
-install.packages("corrplot")
-
-# Load necessary libraries
-library(corrplot)
-# Calculate correlation matrix
-correlation_matrix <- cor(df_cleaned %>% select(hrs, ovt, total_work_time), use = "complete.obs")
-
-# Create a correlation plot
-corrplot(correlation_matrix, method = "circle", type = "lower", addCoef.col = "black", number.cex = 0.7)
+  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )
 
 
 
 
-# Add a new column for day of the week
-df_cleaned <- df_cleaned %>%
-  mutate(day_of_week = weekdays(date))
 
-# Average work time by day of the week
-df_day_of_week <- df_cleaned %>%
-  group_by(day_of_week) %>%
-  summarize(avg_work_time = mean(total_work_time, na.rm = TRUE))
-
-# Plot average work time by day of the week
-ggplot(df_day_of_week, aes(x = reorder(day_of_week, avg_work_time), y = avg_work_time)) +
-  geom_bar(stat = "identity", fill = "lightgreen") +
-  labs(title = "Average Total Work Time by Day of the Week", x = "Day of the Week", y = "Average Work Time (hrs)") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))

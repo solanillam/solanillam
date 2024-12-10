@@ -3,5 +3,5 @@ title: "Projects"
 ---
 
 
-* [Bike Project](https://stt2860-f2024.github.io/bicycle-sharing-solanillam/BikeSharing.html)
+* [Bicyle Replication Project](https://stt2860-f2024.github.io/bicycle-sharing-solanillam/BikeSharing.html)
 * [Project 2]()
