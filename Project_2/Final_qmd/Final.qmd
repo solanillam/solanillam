@@ -51,6 +51,10 @@ library(dplyr)
 # For date and time handling
 library(lubridate)
 
+# Quarto rendering
+library(rmarkdown)  
+library(knitr)      
+
 # For creating visuals
 library(ggplot2)
 
@@ -182,9 +186,9 @@ ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time
   labs(title = "Average Total Work Time by Unit", x = "Unit", y = "Average Work Time (hrs)") +
   theme_minimal() +
   theme(
-    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8),
-    panel.grid.major = element_blank(), # Remove major grid lines
-    panel.grid.minor = element_blank()  # Remove minor grid lines
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1, size = 8), # Ensures angled text
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
   )
 ```
 

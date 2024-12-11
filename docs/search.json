@@ -11,7 +11,7 @@
     "href": "Project_2/Final_qmd/Final.html#loading-necessary-packages",
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
     "section": "Loading Necessary Packages",
-    "text": "Loading Necessary Packages\n\n# For data importing\nlibrary(readxl)\n\n# For data manipulation and tidying\nlibrary(tidyverse)\nlibrary(stringr)\nlibrary(dplyr)\n\n# For date and time handling\nlibrary(lubridate)\n\n# For creating visuals\nlibrary(ggplot2)"
+    "text": "Loading Necessary Packages\n\n# For data importing\nlibrary(readxl)\n\n# For data manipulation and tidying\nlibrary(tidyverse)\nlibrary(stringr)\nlibrary(dplyr)\n\n# For date and time handling\nlibrary(lubridate)\n\n# Quarto rendering\nlibrary(rmarkdown)  \nlibrary(knitr)      \n\n# For creating visuals\nlibrary(ggplot2)"
   },
   {
     "objectID": "Project_2/Final_qmd/Final.html#importing-data",
