@@ -21,11 +21,12 @@ keywords:
 license: "CC BY"  
 code-fold: false
 ---
+
 ![Workforce and Safety]()
 
-
 # Introduction
-The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data from **January 2022– December 2023** derived from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.
+
+The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data from **January 2022-- December 2023** derived from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.
 
 Time to get started!
 
@@ -70,7 +71,6 @@ df <- read_excel("~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_f
 
 Ok, let's take a look at the data set.
 
-
 ## Data Munging (cleaning)
 
 ### Step 1: Data Reduction
@@ -99,7 +99,6 @@ df_cleaned <- df_cleaned %>%
 
 Invalid rows with missing or zero incident values (`inc`) or missing overtime (`ovt`) were filtered out to ensure the dataset contained only meaningful observations. Outliers in overtime were handled by keeping only realistic values between 0 and 24 hours, maintaining the integrity of the data.
 
-
 ### Step 3: Data Transformation
 
 ```{r}
@@ -113,10 +112,10 @@ df_cleaned <- df_cleaned %>%
 
 Text data in the `unit` column was standardized by trimming spaces and converting to uppercase for consistency. A new variable, `total_work_time`, was created to combine regular hours and overtime, enabling deeper analysis of workload patterns.
 
-
 ## Findings and Results
 
 ### Incident Trends Over Time
+
 ```{r}
 #| label: fig-nbs
 #| fig-cap: "Line graph showing fluctuations in the number of incidents over time, with the highest spike occurring in early 2024."
@@ -137,9 +136,8 @@ ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
   )
 ```
 
-
-
 ### Workload Trends Over Time
+
 ```{r}
 #| label: fig-nbs1
 #| fig-cap: "Line graph showing variations in total work time over time, with most values ranging between 50 and 150 hours, peaking occasionally throughout 2022 to early 2024."
@@ -154,6 +152,7 @@ ggplot(df_cleaned, aes(x = date, y = total_work_time)) +
 ```
 
 ### Incident Distribution Across Units
+
 ```{r}
 #| label: fig-nbs2
 #| fig-cap: "Bar graph showing the distribution of incidents across refinery units, with GBR-OMCC-FIELD reporting the highest number of incidents."
@@ -172,6 +171,7 @@ ggplot(df_cleaned, aes(x = unit, y = inc)) +
 ```
 
 ### Workload Variability by Unit
+
 ```{r}
 #| label: fig-nbs3
 #| fig-cap: "Bar graph showing average total work time across units, with the highest averages recorded in GBR-OMCC-FIELD and GBR-CHEMICALS units."
@@ -193,6 +193,7 @@ ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time
 ```
 
 ### Relationship Between Hours Worked and Overtime
+
 ```{r}
 #| label: fig-nbs4
 #| fig-cap: "Scatter plot showing the relationship between hours worked and overtime, with a positive correlation evident as higher regular hours often coincide with higher overtime."

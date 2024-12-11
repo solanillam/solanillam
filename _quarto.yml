@@ -8,9 +8,13 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-      - project.qmd
-    
+      - href: about.qmd
+        text: About Me
+      - href: project.qmd
+        text: Project 1
+      - href: Final.qmd
+        text: Project 2
+      
     tools:
       - icon: trash
         href: https://www.mountainproject.com/area/112001458/the-dump
