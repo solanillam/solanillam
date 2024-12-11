@@ -72,6 +72,8 @@ df <- read_excel("~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_f
 Ok, let's take a look at the data set.
 
 ## Data Structures and Variables
+
+### `dataframe`
 ```{r}
 #| echo: false
 glimpse(df)
