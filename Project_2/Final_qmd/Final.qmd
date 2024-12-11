@@ -46,9 +46,13 @@ library(readxl)
 # For data manipulation and tidying
 library(tidyverse)
 library(stringr)
+library(dplyr)
 
 # For date and time handling
 library(lubridate)
+
+# For creating visuals
+library(ggplot2)
 
 ```
 
@@ -110,6 +114,9 @@ Text data in the `unit` column was standardized by trimming spaces and convertin
 
 ### Incident Trends Over Time
 ```{r}
+#| label: fig-nbs
+#| fig-cap: "Line graph showing fluctuations in the number of incidents over time, with the highest spike occurring in early 2024."
+#| echo: false
 # Incidents over time
 df_incidents_over_time <- df_cleaned %>%
   group_by(date) %>%
@@ -119,7 +126,10 @@ ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
   geom_line(color = "red") +
   labs(title = "Incidents Over Time", x = "Date", y = "Total Incidents") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  theme(
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8),
+    panel.grid.major = element_blank(), # Remove major grid lines
+    panel.grid.minor = element_blank()  # Remove minor grid lines
   )
 ```
 
@@ -127,6 +137,9 @@ ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
 
 ### Workload Trends Over Time
 ```{r}
+#| label: fig-nbs1
+#| fig-cap: "Line graph showing variations in total work time over time, with most values ranging between 50 and 150 hours, peaking occasionally throughout 2022 to early 2024."
+#| echo: false
 # Time-Based Trend: Total Work Time Over Time
 # Plot total work time over time
 ggplot(df_cleaned, aes(x = date, y = total_work_time)) +
@@ -138,6 +151,9 @@ ggplot(df_cleaned, aes(x = date, y = total_work_time)) +
 
 ### Incident Distribution Across Units
 ```{r}
+#| label: fig-nbs2
+#| fig-cap: "Bar graph showing the distribution of incidents across refinery units, with GBR-OMCC-FIELD reporting the highest number of incidents."
+#| echo: false
 # Incident Distribution Across Units
 # Bar plot of incidents across units
 ggplot(df_cleaned, aes(x = unit, y = inc)) +
@@ -145,12 +161,17 @@ ggplot(df_cleaned, aes(x = unit, y = inc)) +
   labs(title = "Incidents Across Units", x = "Unit", y = "Number of Incidents") +
   theme_minimal() +
   theme(
-    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8),
+    panel.grid.major = element_blank(), # Remove major grid lines
+    panel.grid.minor = element_blank()  # Remove minor grid lines
   )
 ```
 
 ### Workload Variability by Unit
 ```{r}
+#| label: fig-nbs3
+#| fig-cap: "Bar graph showing average total work time across units, with the highest averages recorded in GBR-OMCC-FIELD and GBR-CHEMICALS units."
+#| echo: false
 # Average total work time by unit
 df_avg_work_time <- df_cleaned %>%
   group_by(unit) %>%
@@ -159,13 +180,19 @@ df_avg_work_time <- df_cleaned %>%
 ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time)) +
   geom_bar(stat = "identity", fill = "coral") +
   labs(title = "Average Total Work Time by Unit", x = "Unit", y = "Average Work Time (hrs)") +
-  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
-  )+
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8),
+    panel.grid.major = element_blank(), # Remove major grid lines
+    panel.grid.minor = element_blank()  # Remove minor grid lines
+  )
 ```
 
 ### Relationship Between Hours Worked and Overtime
 ```{r}
+#| label: fig-nbs4
+#| fig-cap: "Scatter plot showing the relationship between hours worked and overtime, with a positive correlation evident as higher regular hours often coincide with higher overtime."
+#| echo: false
 # Overtime vs. Hours Worked
 # Scatter plot: Overtime vs. Hours Worked
 ggplot(df_cleaned, aes(x = hrs, y = ovt)) +
