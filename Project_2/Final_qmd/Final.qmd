@@ -121,8 +121,6 @@ ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
   )
-
-
 ```
 
 
