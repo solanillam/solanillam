@@ -206,3 +206,6 @@ ggplot(df_cleaned, aes(x = hrs, y = ovt)) +
   theme_minimal()
 
 ```
+
+## Discussion
+The analysis of two years of workforce and safety data from the oil refinery highlights several critical insights. Incident trends over time reveal significant spikes, particularly in early 2024, which may correlate with operational changes or increased workloads. Similarly, workload patterns exhibit variations across units, with departments such as GBR-OMCC-FIELD and GBR-CHEMICALS consistently recording higher total work hours. The positive correlation between hours worked and overtime suggests that employees in high-demand units might face a greater risk of fatigue, which could contribute to safety incidents. These findings underline the need for further investigation to identify the root causes of these trends and emphasize the importance of balancing workload distribution while implementing proactive safety measures to ensure both workforce well-being and operational efficiency.
