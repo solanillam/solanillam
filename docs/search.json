@@ -4,21 +4,21 @@
     "href": "Project_2/Final_qmd/Final.html",
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
     "section": "",
-    "text": "Workforce and Safety!"
+    "text": "Workforce and Safety"
   },
   {
     "objectID": "Project_2/Final_qmd/Final.html#loading-necessary-packages",
     "href": "Project_2/Final_qmd/Final.html#loading-necessary-packages",
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
     "section": "Loading Necessary Packages",
-    "text": "Loading Necessary Packages\n\n# For data importing\nlibrary(readxl)\n# For data manipulation and tidying\nlibrary(tidyverse)\nlibrary(stringr)\n\n# For date and time handling\nlibrary(lubridate)"
+    "text": "Loading Necessary Packages\n\n# For data importing\nlibrary(readxl)\n\n# For data manipulation and tidying\nlibrary(tidyverse)\nlibrary(stringr)\n\n# For date and time handling\nlibrary(lubridate)"
   },
   {
     "objectID": "Project_2/Final_qmd/Final.html#importing-data",
     "href": "Project_2/Final_qmd/Final.html#importing-data",
     "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
     "section": "Importing Data",
-    "text": "Importing Data\nThe dataset for this project was sourced from an Excel file and imported into R using the read_excel() function from the readxl package. The imported data was then inspected and prepared for analysis through a series of cleaning and transformation steps to ensure accuracy and usability.\n\ndf &lt;- read_excel(\"~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx\")\n\nOk, let’s take a look at the data set.\n\nData Structures and Variables"
+    "text": "Importing Data\nThe dataset for this project was sourced from an Excel file and imported into R using the read_excel() function from the readxl package. The imported data was then inspected and prepared for analysis through a series of cleaning and transformation steps to ensure accuracy and usability.\n\ndf &lt;- read_excel(\"~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx\")\n\nOk, let’s take a look at the data set."
   },
   {
     "objectID": "index.html",
@@ -40,5 +40,26 @@
     "title": "Projects",
     "section": "",
     "text": "Bicyle Replication Project\nProject 2"
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html#data-munging",
+    "href": "Project_2/Final_qmd/Final.html#data-munging",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "Data Munging",
+    "text": "Data Munging\n\nStep 1: Data Reduction\n\n# Removed Unnecessary Columns\ndf_cleaned &lt;- df %&gt;% select(-aud, -obs, -turnaround)\n\n# Removed Duplicate Rows\ndf_cleaned &lt;- df_cleaned %&gt;% distinct()\n\nDuring the data reduction step, unnecessary columns (aud, obs, and turnaround) were removed to streamline the dataset and focus on relevant variables. Duplicate rows were eliminated to ensure the data was clean and free from redundancies, providing a solid foundation for accurate analysis."
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html#data-munging-cleaning",
+    "href": "Project_2/Final_qmd/Final.html#data-munging-cleaning",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "Data Munging (cleaning)",
+    "text": "Data Munging (cleaning)\n\nStep 1: Data Reduction\n\n# Removed Unnecessary Columns\ndf_cleaned &lt;- df %&gt;% select(-aud, -obs, -turnaround)\n\n# Removed Duplicate Rows\ndf_cleaned &lt;- df_cleaned %&gt;% distinct()\n\nDuring the data reduction step, unnecessary columns (aud, obs, and turnaround) were removed to streamline the dataset and focus on relevant variables. Duplicate rows were eliminated to ensure the data was clean and free from redundancies, providing a solid foundation for accurate analysis.\n\n\nStep 2: Data Validation\n\n# Filtered Rows with Valid Values\ndf_cleaned &lt;- df_cleaned %&gt;%\n  filter(!is.na(inc) & inc != 0) %&gt;%\n  filter(!is.na(ovt))\n# Handled Outliers\ndf_cleaned &lt;- df_cleaned %&gt;%\n  filter(ovt &gt;= 0 & ovt &lt;= 24)\n\nInvalid rows with missing or zero incident values (inc) or missing overtime (ovt) were filtered out to ensure the dataset contained only meaningful observations. Outliers in overtime were handled by keeping only realistic values between 0 and 24 hours, maintaining the integrity of the data.\n\n\nStep 3: Data Transformation\n\n# Standardized Text Data\ndf_cleaned$unit &lt;- trimws(toupper(df_cleaned$unit))\n\n# Created New Variables\ndf_cleaned &lt;- df_cleaned %&gt;%\n  mutate(total_work_time = hrs + ovt)\n\nText data in the unit column was standardized by trimming spaces and converting to uppercase for consistency. A new variable, total_work_time, was created to combine regular hours and overtime, enabling deeper analysis of workload patterns."
+  },
+  {
+    "objectID": "Project_2/Final_qmd/Final.html#findings-and-results",
+    "href": "Project_2/Final_qmd/Final.html#findings-and-results",
+    "title": "Analyzing Workforce Dynamics and Safety: Insights from an Oil Refinery",
+    "section": "Findings and Results",
+    "text": "Findings and Results\n\nIncident Trends Over Time\n\n# Incidents over time\ndf_incidents_over_time &lt;- df_cleaned %&gt;%\n  group_by(date) %&gt;%\n  summarize(total_incidents = sum(inc, na.rm = TRUE))\n\nggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +\n  geom_line(color = \"red\") +\n  labs(title = \"Incidents Over Time\", x = \"Date\", y = \"Total Incidents\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)\n  )\n\n\n\n\n\n\n\n\n\n\nWorkload Trends Over Time\n\n# Time-Based Trend: Total Work Time Over Time\n# Plot total work time over time\nggplot(df_cleaned, aes(x = date, y = total_work_time)) +\n  geom_line(color = \"blue\") +\n  labs(title = \"Total Work Time Over Time\", x = \"Date\", y = \"Total Work Time (hrs)\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n\n\n\nIncident Distribution Across Units\n\n# Incident Distribution Across Units\n# Bar plot of incidents across units\nggplot(df_cleaned, aes(x = unit, y = inc)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Incidents Across Units\", x = \"Unit\", y = \"Number of Incidents\") +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)\n  )\n\n\n\n\n\n\n\n\n\n\nWorkload Variability by Unit\n\n# Average total work time by unit\ndf_avg_work_time &lt;- df_cleaned %&gt;%\n  group_by(unit) %&gt;%\n  summarize(avg_work_time = mean(total_work_time, na.rm = TRUE))\n\nggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time)) +\n  geom_bar(stat = \"identity\", fill = \"coral\") +\n  labs(title = \"Average Total Work Time by Unit\", x = \"Unit\", y = \"Average Work Time (hrs)\") +\n  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)\n  )+\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nRelationship Between Hours Worked and Overtime\n\n# Overtime vs. Hours Worked\n# Scatter plot: Overtime vs. Hours Worked\nggplot(df_cleaned, aes(x = hrs, y = ovt)) +\n  geom_point(color = \"green\", alpha = 0.6) +\n  labs(title = \"Overtime vs. Hours Worked\", x = \"Hours Worked\", y = \"Overtime (hrs)\") +\n  theme_minimal()"
   }
 ]

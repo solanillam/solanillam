@@ -88,8 +88,7 @@ ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time
   geom_bar(stat = "identity", fill = "coral") +
   labs(title = "Average Total Work Time by Unit", x = "Unit", y = "Average Work Time (hrs)") +
   theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
-  )
-+
+  )+
   theme_minimal()
 
 

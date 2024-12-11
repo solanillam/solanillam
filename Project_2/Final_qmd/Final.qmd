@@ -14,20 +14,18 @@ author:
         state: NC  
         url: https://www.appstate.edu/
 abstract: >
- This project analyzes two years of data (2022–2023) on employee work hours, overtime, and safety incidents at an oil refinery. Through data cleaning and visualization, key trends and patterns, including workload distribution and incident frequencies, are explored. The findings, presented on an interactive web page, offer insights into workforce dynamics and safety outcomes with recommendations for further consideration.
+ This project examines two years of oil refinery data (2022–2023) on work hours, overtime, and safety incidents, uncovering key trends through data cleaning and visualization to provide insights into workforce dynamics and safety.
 keywords:
   - R
   - data viz
 license: "CC BY"  
 code-fold: false
 ---
-
-![Workforce and Safety!](https://files.oaiusercontent.com/file-Xiw2QHwmdbpJsY3M2yn8JM?se=2024-12-10T19%3A39%3A04Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D7b4dfcf7-5375-4467-a6df-58c2d1676ed8.webp&sig=rD88H0clo2XVqY1GGvwBaTuMWxi%2B2MeJs4vuM4yq86Q%3D)
+![Workforce and Safety]()
 
 
 # Introduction
-
-The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data (2022–2023) from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.
+The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data from **January 2022– December 2023** derived from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.
 
 Time to get started!
 
@@ -44,6 +42,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = N
 
 # For data importing
 library(readxl)
+
 # For data manipulation and tidying
 library(tidyverse)
 library(stringr)
@@ -63,4 +62,117 @@ df <- read_excel("~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_f
 
 Ok, let's take a look at the data set.
 
-### Data Structures and Variables
+
+## Data Munging (cleaning)
+
+### Step 1: Data Reduction
+
+```{r}
+# Removed Unnecessary Columns
+df_cleaned <- df %>% select(-aud, -obs, -turnaround)
+
+# Removed Duplicate Rows
+df_cleaned <- df_cleaned %>% distinct()
+```
+
+During the data reduction step, unnecessary columns (`aud`, `obs`, and `turnaround`) were removed to streamline the dataset and focus on relevant variables. Duplicate rows were eliminated to ensure the data was clean and free from redundancies, providing a solid foundation for accurate analysis.
+
+### Step 2: Data Validation
+
+```{r}
+# Filtered Rows with Valid Values
+df_cleaned <- df_cleaned %>%
+  filter(!is.na(inc) & inc != 0) %>%
+  filter(!is.na(ovt))
+# Handled Outliers
+df_cleaned <- df_cleaned %>%
+  filter(ovt >= 0 & ovt <= 24)
+```
+
+Invalid rows with missing or zero incident values (`inc`) or missing overtime (`ovt`) were filtered out to ensure the dataset contained only meaningful observations. Outliers in overtime were handled by keeping only realistic values between 0 and 24 hours, maintaining the integrity of the data.
+
+
+### Step 3: Data Transformation
+
+```{r}
+# Standardized Text Data
+df_cleaned$unit <- trimws(toupper(df_cleaned$unit))
+
+# Created New Variables
+df_cleaned <- df_cleaned %>%
+  mutate(total_work_time = hrs + ovt)
+```
+
+Text data in the `unit` column was standardized by trimming spaces and converting to uppercase for consistency. A new variable, `total_work_time`, was created to combine regular hours and overtime, enabling deeper analysis of workload patterns.
+
+
+## Findings and Results
+
+### Incident Trends Over Time
+```{r}
+# Incidents over time
+df_incidents_over_time <- df_cleaned %>%
+  group_by(date) %>%
+  summarize(total_incidents = sum(inc, na.rm = TRUE))
+
+ggplot(df_incidents_over_time, aes(x = date, y = total_incidents)) +
+  geom_line(color = "red") +
+  labs(title = "Incidents Over Time", x = "Date", y = "Total Incidents") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )
+
+
+```
+
+
+
+### Workload Trends Over Time
+```{r}
+# Time-Based Trend: Total Work Time Over Time
+# Plot total work time over time
+ggplot(df_cleaned, aes(x = date, y = total_work_time)) +
+  geom_line(color = "blue") +
+  labs(title = "Total Work Time Over Time", x = "Date", y = "Total Work Time (hrs)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Incident Distribution Across Units
+```{r}
+# Incident Distribution Across Units
+# Bar plot of incidents across units
+ggplot(df_cleaned, aes(x = unit, y = inc)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Incidents Across Units", x = "Unit", y = "Number of Incidents") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )
+```
+
+### Workload Variability by Unit
+```{r}
+# Average total work time by unit
+df_avg_work_time <- df_cleaned %>%
+  group_by(unit) %>%
+  summarize(avg_work_time = mean(total_work_time, na.rm = TRUE))
+
+ggplot(df_avg_work_time, aes(x = reorder(unit, avg_work_time), y = avg_work_time)) +
+  geom_bar(stat = "identity", fill = "coral") +
+  labs(title = "Average Total Work Time by Unit", x = "Unit", y = "Average Work Time (hrs)") +
+  theme(axis.text.x = element_text(angle = 55, hjust = 1, vjust = 1.0, size = 8)
+  )+
+  theme_minimal()
+```
+
+### Relationship Between Hours Worked and Overtime
+```{r}
+# Overtime vs. Hours Worked
+# Scatter plot: Overtime vs. Hours Worked
+ggplot(df_cleaned, aes(x = hrs, y = ovt)) +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(title = "Overtime vs. Hours Worked", x = "Hours Worked", y = "Overtime (hrs)") +
+  theme_minimal()
+
+```

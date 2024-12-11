@@ -166,9 +166,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#loading-necessary-packages" id="toc-loading-necessary-packages" class="nav-link" data-scroll-target="#loading-necessary-packages">Loading Necessary Packages</a></li>
-  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a>
+  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
+  <li><a href="#data-munging-cleaning" id="toc-data-munging-cleaning" class="nav-link" data-scroll-target="#data-munging-cleaning">Data Munging (cleaning)</a>
   <ul class="collapse">
-  <li><a href="#data-structures-and-variables" id="toc-data-structures-and-variables" class="nav-link" data-scroll-target="#data-structures-and-variables">Data Structures and Variables</a></li>
+  <li><a href="#step-1-data-reduction" id="toc-step-1-data-reduction" class="nav-link" data-scroll-target="#step-1-data-reduction">Step 1: Data Reduction</a></li>
+  <li><a href="#step-2-data-validation" id="toc-step-2-data-validation" class="nav-link" data-scroll-target="#step-2-data-validation">Step 2: Data Validation</a></li>
+  <li><a href="#step-3-data-transformation" id="toc-step-3-data-transformation" class="nav-link" data-scroll-target="#step-3-data-transformation">Step 3: Data Transformation</a></li>
+  </ul></li>
+  <li><a href="#findings-and-results" id="toc-findings-and-results" class="nav-link" data-scroll-target="#findings-and-results">Findings and Results</a>
+  <ul class="collapse">
+  <li><a href="#incident-trends-over-time" id="toc-incident-trends-over-time" class="nav-link" data-scroll-target="#incident-trends-over-time">Incident Trends Over Time</a></li>
+  <li><a href="#workload-trends-over-time" id="toc-workload-trends-over-time" class="nav-link" data-scroll-target="#workload-trends-over-time">Workload Trends Over Time</a></li>
+  <li><a href="#incident-distribution-across-units" id="toc-incident-distribution-across-units" class="nav-link" data-scroll-target="#incident-distribution-across-units">Incident Distribution Across Units</a></li>
+  <li><a href="#workload-variability-by-unit" id="toc-workload-variability-by-unit" class="nav-link" data-scroll-target="#workload-variability-by-unit">Workload Variability by Unit</a></li>
+  <li><a href="#relationship-between-hours-worked-and-overtime" id="toc-relationship-between-hours-worked-and-overtime" class="nav-link" data-scroll-target="#relationship-between-hours-worked-and-overtime">Relationship Between Hours Worked and Overtime</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -205,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified on December 10, 2024 14:35:51 Eastern Standard Time</p>
+      <p class="date">Last modified on December 10, 2024 20:56:54 Eastern Standard Time</p>
     </div>
   </div>
   
@@ -215,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
   <div class="abstract">
     <div class="abstract-title">Abstract</div>
-    <p>This project analyzes two years of data (2022–2023) on employee work hours, overtime, and safety incidents at an oil refinery. Through data cleaning and visualization, key trends and patterns, including workload distribution and incident frequencies, are explored. The findings, presented on an interactive web page, offer insights into workforce dynamics and safety outcomes with recommendations for further consideration.</p>
+    <p>This project examines two years of oil refinery data (2022–2023) on work hours, overtime, and safety incidents, uncovering key trends through data cleaning and visualization to provide insights into workforce dynamics and safety.</p>
   </div>
 </div>
 
@@ -223,25 +234,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://files.oaiusercontent.com/file-Xiw2QHwmdbpJsY3M2yn8JM?se=2024-12-10T19%3A39%3A04Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D7b4dfcf7-5375-4467-a6df-58c2d1676ed8.webp&amp;sig=rD88H0clo2XVqY1GGvwBaTuMWxi%2B2MeJs4vuM4yq86Q%3D" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Workforce and Safety!</figcaption>
+<p><img src=".png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Workforce and Safety</figcaption>
 </figure>
 </div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data (2022–2023) from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.</p>
+<p>The oil and gas industry operates in a complex and high-stakes environment, where workforce dynamics and safety are critical to operational success. This project examines two years of data from <strong>January 2022– December 2023</strong> derived from an oil refinery, focusing on employee work hours, overtime, and reported safety incidents. By cleaning and analyzing the data, this study aims to uncover meaningful patterns and trends that shed light on the relationship between workload and safety outcomes. Using visualizations to present the findings, the project provides a clear and concise overview of the data, offering insights to guide future discussions on workforce management and safety strategies.</p>
 <p>Time to get started!</p>
 <section id="loading-necessary-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-necessary-packages">Loading Necessary Packages</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For data importing</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For data manipulation and tidying</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For date and time handling</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For data manipulation and tidying</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># For date and time handling</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="importing-data" class="level2">
@@ -251,8 +263,151 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_final_V1.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ok, let’s take a look at the data set.</p>
-<section id="data-structures-and-variables" class="level3">
-<h3 class="anchored" data-anchor-id="data-structures-and-variables">Data Structures and Variables</h3>
+</section>
+<section id="data-munging-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-munging-cleaning">Data Munging (cleaning)</h2>
+<section id="step-1-data-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-data-reduction">Step 1: Data Reduction</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removed Unnecessary Columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>aud, <span class="sc">-</span>obs, <span class="sc">-</span>turnaround)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Removed Duplicate Rows</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>During the data reduction step, unnecessary columns (<code>aud</code>, <code>obs</code>, and <code>turnaround</code>) were removed to streamline the dataset and focus on relevant variables. Duplicate rows were eliminated to ensure the data was clean and free from redundancies, providing a solid foundation for accurate analysis.</p>
+</section>
+<section id="step-2-data-validation" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-data-validation">Step 2: Data Validation</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtered Rows with Valid Values</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(inc) <span class="sc">&amp;</span> inc <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ovt))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Handled Outliers</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ovt <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> ovt <span class="sc">&lt;=</span> <span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Invalid rows with missing or zero incident values (<code>inc</code>) or missing overtime (<code>ovt</code>) were filtered out to ensure the dataset contained only meaningful observations. Outliers in overtime were handled by keeping only realistic values between 0 and 24 hours, maintaining the integrity of the data.</p>
+</section>
+<section id="step-3-data-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-data-transformation">Step 3: Data Transformation</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized Text Data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_cleaned<span class="sc">$</span>unit <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">toupper</span>(df_cleaned<span class="sc">$</span>unit))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Created New Variables</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_work_time =</span> hrs <span class="sc">+</span> ovt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Text data in the <code>unit</code> column was standardized by trimming spaces and converting to uppercase for consistency. A new variable, <code>total_work_time</code>, was created to combine regular hours and overtime, enabling deeper analysis of workload patterns.</p>
+</section>
+</section>
+<section id="findings-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="findings-and-results">Findings and Results</h2>
+<section id="incident-trends-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="incident-trends-over-time">Incident Trends Over Time</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Incidents over time</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_incidents_over_time <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_incidents =</span> <span class="fu">sum</span>(inc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_incidents_over_time, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> total_incidents)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Incidents Over Time"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Total Incidents"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">55</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.0</span>, <span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Final_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="workload-trends-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="workload-trends-over-time">Workload Trends Over Time</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time-Based Trend: Total Work Time Over Time</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot total work time over time</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> total_work_time)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total Work Time Over Time"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Total Work Time (hrs)"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Final_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="incident-distribution-across-units" class="level3">
+<h3 class="anchored" data-anchor-id="incident-distribution-across-units">Incident Distribution Across Units</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Incident Distribution Across Units</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot of incidents across units</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> unit, <span class="at">y =</span> inc)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Incidents Across Units"</span>, <span class="at">x =</span> <span class="st">"Unit"</span>, <span class="at">y =</span> <span class="st">"Number of Incidents"</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">55</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.0</span>, <span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Final_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="workload-variability-by-unit" class="level3">
+<h3 class="anchored" data-anchor-id="workload-variability-by-unit">Workload Variability by Unit</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average total work time by unit</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_avg_work_time <span class="ot">&lt;-</span> df_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(unit) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_work_time =</span> <span class="fu">mean</span>(total_work_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_avg_work_time, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(unit, avg_work_time), <span class="at">y =</span> avg_work_time)) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"coral"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Total Work Time by Unit"</span>, <span class="at">x =</span> <span class="st">"Unit"</span>, <span class="at">y =</span> <span class="st">"Average Work Time (hrs)"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">55</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.0</span>, <span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Final_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="relationship-between-hours-worked-and-overtime" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-between-hours-worked-and-overtime">Relationship Between Hours Worked and Overtime</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overtime vs. Hours Worked</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot: Overtime vs. Hours Worked</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> hrs, <span class="at">y =</span> ovt)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"green"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Overtime vs. Hours Worked"</span>, <span class="at">x =</span> <span class="st">"Hours Worked"</span>, <span class="at">y =</span> <span class="st">"Overtime (hrs)"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Final_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
