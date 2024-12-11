@@ -48,6 +48,7 @@ library(tidyverse)
 library(stringr)
 library(dplyr)
 
+
 # For date and time handling
 library(lubridate)
 
@@ -69,6 +70,24 @@ df <- read_excel("~/git_repos/solanillam/Project_2/Raw_Data/Copy of df_overall_f
 ```
 
 Ok, let's take a look at the data set.
+
+## Data Structures and Variables
+```{r}
+#| echo: false
+glimpse(df)
+```
+There are 9 variables in the data frame:
+
+1. `date`: Represents the specific date for each record.
+2. `unit`: Denotes the specific unit within the refinery.
+3. `ppl`: Refers to the number of people or employees working during the recorded time period.
+4. `hrs`: Represents the total regular hours worked by employees.
+5. `ovt`: Refers to the overtime hours worked by employees.
+6. `aud`: Represents the number of audits conducted within a specific unit or timeframe.
+7. `obs`: Indicates the number of observations recorded (e.g., safety observations, quality checks).
+8. `inc`: Represents the number of incidents (e.g., safety or operational) recorded.
+9. `turnaround`:Refers to the time taken for a unit or system to return to normal operation after maintenance or an incident.
+
 
 ## Data Munging (cleaning)
 
