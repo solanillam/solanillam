@@ -22,7 +22,6 @@ license: "CC BY"
 code-fold: false
 ---
 
-![Workforce and Safety](https://mathr.appstate.edu/s/11398e7971f15fbd2e6b2/files/git_repos/solanillam/Project_2/pics/workplace.jpeg)
 
 # Introduction
 
