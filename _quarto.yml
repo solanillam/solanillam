@@ -12,7 +12,7 @@ website:
         text: About Me
       - href: project.qmd
         text: Project 1
-      - href: Final.qmd
+      - href: Project_2/Final_qmd/Final.qmd
         text: Project 2
       
     tools:
